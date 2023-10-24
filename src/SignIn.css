@@ -1,0 +1,26 @@
+a{
+    text-decoration: none;
+    color: #00a76f;
+}
+a:hover{
+    text-decoration-line: underline;
+    /* color: blue; */
+}
+.Button{
+    color:'red';
+}
+.my-signin{
+    border: 3;
+    border-color: aquamarine;
+    background-image:'url(/123.jpg)' ;
+    background-size: 90%;
+    background-color: 'red';
+}
+
+/* border:3,
+borderColor: 'primary.main',
+backgroundImage: 'url(/123.jpg)',
+backgroundSize: '90%',
+backgroundColor: 'white',
+backgroundPosition: 'center',
+position: 'relative',  */
