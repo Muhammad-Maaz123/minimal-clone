@@ -54,7 +54,67 @@ import { hover } from "@testing-library/user-event/dist/hover";
             // backgroundColor: 'green',
             fontSize:12,
             fontWeight:400
-        }
+        },
+        //My Dashboard
+        containerArea:{
+            width:'100%',
+            height:'100vh',
+            backgroundColor:'pink'
+        },
+        navBar:{
+            height:'20vh',
+            backgroundColor:'yellow',
+            
+        },
+        sideBar:{
+            height:'100vh',
+            backgroundColor:'',
+            display:'flex',
+            
+            // justifyContent:'right'
+            
+        },
+        dashboard:{
+            height:'80vh',
+            backgroundColor:'green',
+            
+        },
+
+        // when sidebar is open
+        sidebarListOpened:{
+            my:4,
+            mx:2,
+            backgroundColor:'#FFFFF',
+            fontSize:15,
+            borderRadius:2,
+            display:'flex',
+            // justifyContent:'center',
+            '&:hover': {
+                backgroundColor: '#F6F7F8',
+              },
+            fontFamily: [
+                'Roboto',
+                'Arial',
+                'sans-serif',
+              ]
+            // display:'flex',
+            // justifyContent:'center'
+        },
+       
+        // when sidebar is closed 
+        sidebarListClosed : { 
+            my:2,
+            display: 'flex',
+
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize:13,
+            borderRadius:2,
+            '&:hover': {
+                backgroundColor: '#F6F7F8',
+              },
+          }
        
     };
 
