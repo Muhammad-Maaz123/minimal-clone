@@ -82,13 +82,14 @@ import { hover } from "@testing-library/user-event/dist/hover";
 
         // when sidebar is open
         sidebarListOpened:{
-            my:4,
+            my:2,
             mx:2,
             backgroundColor:'#FFFFF',
             fontSize:15,
             borderRadius:2,
+
             display:'flex',
-            // justifyContent:'center',
+            // justifyContent:'space-between',
             '&:hover': {
                 backgroundColor: '#F6F7F8',
               },
@@ -114,8 +115,42 @@ import { hover } from "@testing-library/user-event/dist/hover";
             '&:hover': {
                 backgroundColor: '#F6F7F8',
               },
-          }
-       
+          },
+       sidebarBtn:{
+        mx:2,
+        // width:240,
+        height:40,
+        display:'flex',
+        justifyContent:'space-between',
+        // size:'small'
+       },
+       sidebarProductList : { 
+        my:-1,
+        display: 'flex',
+
+        flexDirection: 'column',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        fontSize:14,
+        borderRadius:2,
+        '&:hover': {
+            backgroundColor: '#F6F7F8',
+            // backgroundColor: 'red',
+
+          },
+      },
+      //create new user
+      myHeader:{
+        marginTop:'5rem',
+        marginLeft:10,
+        backgroundColor:'#FFFFFF',
+        fontSize:25
+      },
+      createNewUser:{
+        // backgroundColor:'yellow',
+        padding:3
+      }
+ 
     };
 
    export default styles;

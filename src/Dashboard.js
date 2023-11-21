@@ -161,6 +161,10 @@ import ChatIcon from '@mui/icons-material/Chat';
 import styles from './Style';
 import OpenSidebar from './OpenSidebar';
 import CloseSidebar from './CloseSidebar';
+import CreateNewUser from './CreateNewUser';
+import ProductDetails from './ProductDetails';
+import SizeDropdownBox from './Test';
+import { Outlet } from 'react-router-dom';
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -190,23 +194,7 @@ const theme = createTheme({
   },
   // Add other theme configurations here
 });
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -246,42 +234,68 @@ export default function Dashboard() {
     setOpen(true);
   };
 
+  const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'open',
+  })(({ theme, open }) => ({
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    }),
+  }));
+
+  const [openNav, setOpenNav] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpenNav(!openNav);
+  };
   return (
 
-
+    
     
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar
-          position="absolute"
-          open={open}
-          sx={{
-            width: `calc(100% - ${drawerWidth}px)`, // Adjust the width as needed
-            marginLeft: open ? `${drawerWidth}px` : '0px', // Adjust the margin-left as needed
-          }}
-        >
-          <Toolbar
-            sx={{
-              marginRight: '0px', // this is for notifications
-              pr: '24px', // keep right padding when drawer closed
-            }}
-          >
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              // noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              {/* Dashboard */}
-            </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+        <AppBar position="absolute" open={openNav} sx={{ backgroundColor: 'green' }}>
+  <Toolbar
+    sx={{
+      pr: '24px', // keep right padding when drawer closed
+    }}
+  >
+    <IconButton
+      edge="start"
+      color="inherit"
+      aria-label="open drawer"
+      onClick={toggleDrawer}
+      sx={{
+        marginRight: '36px',
+        ...(openNav && { display: 'none' }),
+      }}
+    >
+      <MenuIcon />
+    </IconButton>
+    <Typography
+      component="h1"
+      variant="h6"
+      color="inherit"
+      noWrap
+      sx={{ flexGrow: 1 }}
+    >
+      Dashboard
+    </Typography>
+    <IconButton color="inherit">
+      <Badge badgeContent={4} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+    </IconButton>
+  </Toolbar>
+</AppBar>
 
         <Drawer variant="permanent" open={open}>
           <Toolbar
@@ -371,41 +385,18 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Chart /> */}
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Deposits /> */}
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {/* <Orders /> */}
-                </Paper>
-              </Grid>
+            <Grid container
+            my={-12}
+            width={'100%'}
+            height='100vh'
+            sx={{
+              backgroundColor:'#FFFFFF'
+            }}>
+              {/* <Outlet/> */}
+                <CreateNewUser/>
+                {/* <ProductDetails/> */}
+                {/* <SizeDropdownBox/> */}
             </Grid>
-            {/* <Copyright sx={{ pt: 4 }} /> */}
           </Container>
         </Box>
       </Box>

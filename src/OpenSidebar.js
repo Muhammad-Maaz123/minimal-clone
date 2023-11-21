@@ -3,7 +3,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import styles from './Style'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import List from '@mui/material/List';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AppShortcutIcon from '@mui/icons-material/AppShortcut';
@@ -14,11 +15,20 @@ import DryCleaningIcon from '@mui/icons-material/DryCleaning';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import MailIcon from '@mui/icons-material/Mail';
 import ChatIcon from '@mui/icons-material/Chat';
+import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 
 
 
 function OpenSidebar() {
+const [productList,setProductList] = useState(false);
+const list =['List','Details','Create','Edit'];
+function showList()
+{
+    setProductList(!productList) //alternating true/false values
+    // alert(productList);
+}
   return (
     
     <>
@@ -41,11 +51,30 @@ function OpenSidebar() {
                 <PersonIcon />
                 User
               </Typography>
-              <Typography sx={styles.sidebarListOpened}>
-                <DryCleaningIcon />
+              
+               
+                <Typography  onClick={()=>showList()} sx={styles.sidebarListOpened}>
+                <Typography ><DryCleaningIcon />
                 Product
-                {/* <ChevronRightIcon /> */}
+                </Typography>
+              {productList ? <KeyboardArrowDownIcon/>: <ChevronRightIcon/>}
               </Typography>
+              {productList ? 
+                //true condition
+               <ul>
+                  {list.map((n, index) => (
+                    <li key={index}>
+                    <Typography sx={styles.sidebarProductList}>
+                        {n}
+                    </Typography>
+                    </li>
+                    ))}
+               </ul>
+             
+                //false condition
+                : null}
+              
+              
               <Typography sx={styles.sidebarListOpened}>
                 <ShoppingCartCheckoutIcon />
                 Order

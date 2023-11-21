@@ -150,7 +150,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from './Style';
 // import Link from '@mui/material/Link';
 import { useState } from 'react';
-import {Link,useNavigate} from 'react-router-dom'
+import {Link,Outlet,useNavigate} from 'react-router-dom'
+import Dashboard from './Dashboard';
 
 
 const credential = require('./data.json')
@@ -171,7 +172,7 @@ const [passErr,setPassErr] = useState(false);
 const [emailErr,setEmailErr] = useState(false);
 const[matchE,setMatchE]=useState(true)
 const[matchP,setMatchP]=useState(true)
-
+const [valid,setValid] =  useState(false)
   const handleSubmit = (event) => {
     setEmailErr(false);
     setPassErr(false);
@@ -181,6 +182,10 @@ const[matchP,setMatchP]=useState(true)
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
+    if(password === credential.password && email === credential.email)
+    {
+      setValid(true)
+    }
     if(password === '')
     {
       setPassErr(true);
@@ -192,24 +197,24 @@ const[matchP,setMatchP]=useState(true)
     if (email !=='')
     {
       if(credential.email === email){
-        console.log('first')
+        // console.log('first')
         setMatchE(true)
       }
       else 
       {
-        console.log('second')
+        // console.log('second')
         setMatchE(false)
       }
     }
     if (password !=='')
     {
       if(credential.password === password){
-        console.log('first P ')
+        // console.log('first P ')
         setMatchP(true)
       }
       else 
       {
-        console.log('second P  ')
+        // console.log('second P  ')
         setMatchP(false)
       }
     }
@@ -335,7 +340,8 @@ const[matchP,setMatchP]=useState(true)
                 },
                 }}
             >
-              <b>Login</b>
+              {valid ? <Outlet/> : null}
+              <Link to="dashboard">Login</Link>
             </Button>              
     </Box>
     </>
